@@ -4,13 +4,12 @@ import logging
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.entity import Entity
-from homeassistant.core import callback
+from homeassistant.core import callback, HomeAssistant
 
 # from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
 )
-from homeassistant.helpers.typing import HomeAssistantType
 
 from custom_components.nicehash.common import NiceHashSensorDataUpdateCoordinator
 from custom_components.nicehash.const import (
@@ -42,7 +41,7 @@ RIG_STATS_ATTRIBUTES = [{"speedAccepted": {}}, {"speedRejectedTotal": {}}]
 
 
 async def async_setup_entry(
-    hass: HomeAssistantType, config_entry: ConfigEntry, async_add_entities
+    hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities
 ) -> None:
     """Set up the NiceHash sensor using config entry."""
     coordinator: NiceHashSensorDataUpdateCoordinator = hass.data[DOMAIN][
