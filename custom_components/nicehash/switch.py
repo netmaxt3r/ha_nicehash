@@ -4,7 +4,7 @@ import asyncio
 import logging
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.entity import ToggleEntity
-from homeassistant.core import callback
+from homeassistant.core import callback, HomeAssistant
 from homeassistant.helpers import config_validation as cv, entity_platform, service
 import voluptuous as vol
 
@@ -14,7 +14,6 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
 )
-from homeassistant.helpers.typing import HomeAssistantType
 
 from custom_components.nicehash.nicehash import NiceHashPrivateAPI
 from custom_components.nicehash.common import NiceHashSensorDataUpdateCoordinator
@@ -34,7 +33,7 @@ PLATFORM = "switch"
 
 
 async def async_setup_entry(
-    hass: HomeAssistantType, config_entry: ConfigEntry, async_add_entities
+    hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities
 ) -> None:
     """Set up the NiceHash sensor using config entry."""
     coordinator: NiceHashSensorDataUpdateCoordinator = hass.data[DOMAIN][

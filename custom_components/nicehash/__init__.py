@@ -4,8 +4,7 @@ from datetime import timedelta
 import logging
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.typing import HomeAssistantType
+from homeassistant.core import HomeAssistant, callback, HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 
@@ -58,7 +57,7 @@ async def _update_coordinator(hass: HomeAssistant, config_entry: ConfigEntry):
         )
 
 
-async def async_setup_entry(hass: HomeAssistantType, entry: ConfigEntry) -> bool:
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up NiceHash sensor based on a config entry."""
 
     hass.data[DOMAIN].setdefault(entry.entry_id, {})
